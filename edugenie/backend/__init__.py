@@ -1,0 +1,3 @@
+"""
+EduGenie backend package.
+"""

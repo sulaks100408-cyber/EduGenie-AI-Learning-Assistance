@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        EduGenie - AI Learning Assistant
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/styles.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="logo">
+            E
+        </div>
+
+        <div>
+
+            <h1>
+                EduGenie
+            </h1>
+
+            <p>
+                Google Gemini Powered Learning Assistant
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="status"
+        class="status"
+    >
+        Checking API...
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<section class="hero">
+
+    <div class="hero-main">
+
+        <span class="eyebrow">
+            AI LEARNING ASSISTANT
+        </span>
+
+        <h2>
+            Learn faster.
+            <br>
+            Understand better.
+        </h2>
+
+        <p>
+            EduGenie helps students ask questions,
+            understand difficult concepts, generate
+            quizzes, create learning plans and
+            summarize study material.
+        </p>
+
+    </div>
+
+
+    <div class="hero-example">
+
+        <strong>
+            Try an example
+        </strong>
+
+        <button
+            class="example-button"
+            data-example="Which is the largest ocean?"
+        >
+            Which is the largest ocean?
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<nav class="tabs">
+
+    <button
+        class="tab active"
+        data-tab="ask"
+    >
+        Ask
+    </button>
+
+    <button
+        class="tab"
+        data-tab="explain"
+    >
+        Explain
+    </button>
+
+    <button
+        class="tab"
+        data-tab="quiz"
+    >
+        Quiz
+    </button>
+
+    <button
+        class="tab"
+        data-tab="path"
+    >
+        Learning Path
+    </button>
+
+    <button
+        class="tab"
+        data-tab="summary"
+    >
+        Summarize
+    </button>
+
+</nav>
+
+
+
+<!-- =========================================
+     ASK
+========================================= -->
+
+<section
+    id="ask"
+    class="panel active"
+>
+
+    <h3>
+        Ask EduGenie
+    </h3>
+
+    <p class="muted">
+        Ask any educational question and get
+        a clear answer.
+    </p>
+
+
+    <label>
+
+        Question
+
+        <textarea
+            id="askQuestion"
+            rows="5"
+            placeholder="Example: Which is the largest ocean?"
+        ></textarea>
+
+    </label>
+
+
+    <div class="form-row">
+
+        <label>
+
+            Student level
+
+            <select id="askLevel">
+
+                <option value="beginner">
+                    Beginner
+                </option>
+
+                <option value="intermediate">
+                    Intermediate
+                </option>
+
+                <option value="advanced">
+                    Advanced
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <button
+            class="primary"
+            onclick="askQuestion()"
+        >
+            Ask Question
+        </button>
+
+    </div>
+
+
+    <div
+        id="askResult"
+        class="result hidden"
+    ></div>
+
+</section>
+
+
+
+<!-- =========================================
+     EXPLAIN
+========================================= -->
+
+<section
+    id="explain"
+    class="panel"
+>
+
+    <h3>
+        Simplify a Concept
+    </h3>
+
+    <p class="muted">
+        Turn a difficult concept into an
+        easy-to-understand explanation.
+    </p>
+
+
+    <label>
+
+        Topic
+
+        <input
+            id="explainTopic"
+            type="text"
+            placeholder="Example: Pythagorean theorem"
+        >
+
+    </label>
+
+
+    <div class="form-row">
+
+        <label>
+
+            Student level
+
+            <select id="explainLevel">
+
+                <option value="beginner">
+                    Beginner
+                </option>
+
+                <option value="intermediate">
+                    Intermediate
+                </option>
+
+                <option value="advanced">
+                    Advanced
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <button
+            class="primary"
+            onclick="explainTopic()"
+        >
+            Explain
+        </button>
+
+    </div>
+
+
+    <div
+        id="explainResult"
+        class="result hidden"
+    ></div>
+
+</section>
+
+
+
+<!-- =========================================
+     QUIZ
+========================================= -->
+
+<section
+    id="quiz"
+    class="panel"
+>
+
+    <h3>
+        Generate a Quiz
+    </h3>
+
+    <p class="muted">
+        Generate multiple-choice questions
+        and check your score.
+    </p>
+
+
+    <div class="grid-two">
+
+
+        <label>
+
+            Topic
+
+            <input
+                id="quizTopic"
+                type="text"
+                placeholder="Example: Photosynthesis"
+            >
+
+        </label>
+
+
+        <label>
+
+            Number of questions
+
+            <input
+                id="quizCount"
+                type="number"
+                min="1"
+                max="10"
+                value="5"
+            >
+
+        </label>
+
+
+    </div>
+
+
+    <div class="form-row">
+
+        <label>
+
+            Student level
+
+            <select id="quizLevel">
+
+                <option value="beginner">
+                    Beginner
+                </option>
+
+                <option value="intermediate">
+                    Intermediate
+                </option>
+
+                <option value="advanced">
+                    Advanced
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <button
+            class="primary"
+            onclick="generateQuiz()"
+        >
+            Generate Quiz
+        </button>
+
+    </div>
+
+
+    <div
+        id="quizResult"
+        class="result hidden"
+    ></div>
+
+</section>
+
+
+
+<!-- =========================================
+     LEARNING PATH
+========================================= -->
+
+<section
+    id="path"
+    class="panel"
+>
+
+    <h3>
+        Personalized Learning Path
+    </h3>
+
+    <p class="muted">
+        Tell EduGenie what you want to learn
+        and receive a structured plan.
+    </p>
+
+
+    <div class="grid-two">
+
+
+        <label>
+
+            Learning goal
+
+            <input
+                id="pathGoal"
+                type="text"
+                placeholder="Example: Learn SQL for data analysis"
+            >
+
+        </label>
+
+
+        <label>
+
+            Duration in weeks
+
+            <input
+                id="pathWeeks"
+                type="number"
+                min="1"
+                max="12"
+                value="4"
+            >
+
+        </label>
+
+
+    </div>
+
+
+    <div class="form-row">
+
+        <label>
+
+            Current level
+
+            <select id="pathLevel">
+
+                <option value="beginner">
+                    Beginner
+                </option>
+
+                <option value="intermediate">
+                    Intermediate
+                </option>
+
+                <option value="advanced">
+                    Advanced
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <button
+            class="primary"
+            onclick="generatePath()"
+        >
+            Create Learning Path
+        </button>
+
+    </div>
+
+
+    <div
+        id="pathResult"
+        class="result hidden"
+    ></div>
+
+</section>
+
+
+
+<!-- =========================================
+     SUMMARY
+========================================= -->
+
+<section
+    id="summary"
+    class="panel"
+>
+
+    <h3>
+        Summarize Study Material
+    </h3>
+
+    <p class="muted">
+        Paste your study material and get
+        a concise summary.
+    </p>
+
+
+    <label>
+
+        Educational text
+
+        <textarea
+            id="summaryText"
+            rows="10"
+            placeholder="Paste your educational passage here..."
+        ></textarea>
+
+    </label>
+
+
+    <div class="form-row">
+
+        <label>
+
+            Student level
+
+            <select id="summaryLevel">
+
+                <option value="beginner">
+                    Beginner
+                </option>
+
+                <option value="intermediate">
+                    Intermediate
+                </option>
+
+                <option value="advanced">
+                    Advanced
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <button
+            class="primary"
+            onclick="summarizeText()"
+        >
+            Summarize
+        </button>
+
+    </div>
+
+
+    <div
+        id="summaryResult"
+        class="result hidden"
+    ></div>
+
+</section>
+
+
+
+<footer>
+
+    <span>
+        EduGenie
+    </span>
+
+    <span>
+        FastAPI + Google Gemini + HTML/CSS/JavaScript
+    </span>
+
+</footer>
+
+
+</main>
+
+
+<script src="/static/app.js"></script>
+
+
+</body>
+
+</html>
